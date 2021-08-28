@@ -1,25 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import Registration from "./components/user/registration/Registration";
+import ConfirmPhone from './components/user/confirmPhone/ConfirmPhone';
+import Login from './components/user/login/Login';
+import ResetPass from './components/user/resetPass/ResetPass';
+import Main from './components/user/main/Main';
+import ParkingPage from "./components/user/parkingPage/ParkingPage";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        {/*  user  */}
+        <Route exact path='/registration' component={Registration} />
+        <Route exact path='/confirmPhone' component={ConfirmPhone} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/resetPass' component={ResetPass} />
+        <Route exact path='/main' component={Main} />
+        <Route exact path='/main/:id' component={ParkingPage} />
+        {/*  ====  */}
+      </Switch>
+    </BrowserRouter>
   );
 }
 
