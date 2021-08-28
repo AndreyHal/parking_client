@@ -1,8 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Container} from "./styles";
 import Button from "../common/button/Button";
 
 const ParkingPage = ({...props}) => {
+  const [selected_slide, setSelectedSlide] = useState(0);
+  const photos = [
+    {
+      url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
+      main: true
+    },
+    {
+      url: 'https://www.fgdc.gov/img/slider/slider-bg-network.jpg/image',
+      main: false
+    },
+    {
+      url: 'https://neyromed.com.ua/wp-content/uploads/2019/05/dark-green-bg.jpg',
+      main: false
+    },
+    {
+      url: 'https://st2.depositphotos.com/3926191/10796/i/600/depositphotos_107969666-stock-photo-golden-bokeh-background.jpg',
+      main: false
+    },
+    {
+      url: 'https://thumbs.dreamstime.com/b/pink-blue-background-color-alphabet-letter-combination-bg-b-g-logo-icon-design-suitable-company-business-143633430.jpg',
+      main: false
+    }
+  ];
+
+  const switchSlide = (index) => {
+    console.log(index, selected_slide)
+    if(index === selected_slide+1) {
+      next();
+    }
+    if(index === selected_slide-1) {
+      prev();
+    }
+  };
+
+  const next = () => {
+    if(selected_slide === photos.length-1) {
+      return;
+    }
+    setSelectedSlide(selected_slide + 1);
+  };
+
+  const prev = () => {
+    if(selected_slide === 0) {
+      return;
+    }
+    setSelectedSlide(selected_slide - 1);
+  };
+
   return(
     <Container>
       <div className="header">
@@ -10,19 +58,29 @@ const ParkingPage = ({...props}) => {
         <p>80₽/сутки</p>
       </div>
       <div className="slider">
+        <div className="prev"/>
         <div className="slides">
           {
-            [1,2,3,4,5].map((item, index) => (
-              <div className="slide">
-                <img src="" alt=""/>
+            photos.map((item, index) => (
+              <div className={`slide ${index === selected_slide ? 'active' : ''}
+                                     ${index === selected_slide-1 ? 'prev' : ''}
+                                     ${index === selected_slide+1 ? 'next' : ''}
+                                     ${index === selected_slide-2 ? 'prevPrev' : ''}
+                                     ${index === selected_slide+2 ? 'nextNext' : ''}`}
+
+                   key={index}
+                   onClick={() => switchSlide(index)}
+              >
+                <img src={item.url} alt=""/>
               </div>
             ))
           }
         </div>
+        <div className="next"/>
         <div className="dots">
           {
-            [1,2,3,4,5].map((item, index) => (
-              <div className="dot"/>
+            photos.map((item, index) => (
+              <div className={`dot ${index === selected_slide ? 'active' : ''}`} key={index}/>
             ))
           }
         </div>
