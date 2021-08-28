@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Container} from "./styles";
+import Popup from "./Popup";
 import Button from "../common/button/Button";
 
 const ParkingPage = ({...props}) => {
   const [selected_slide, setSelectedSlide] = useState(0);
+  const [show_popup, setShowPopup] = useState(false);
   const photos = [
     {
       url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -51,8 +53,15 @@ const ParkingPage = ({...props}) => {
     setSelectedSlide(selected_slide - 1);
   };
 
+  useEffect(() => {
+    document.body.style.overflow = show_popup ? 'hidden' : '';
+  }, [show_popup]);
+
   return(
     <Container>
+      {
+        show_popup && <Popup close={() => setShowPopup(false)}/>
+      }
       <div className="header">
         <h2>Парковка 1</h2>
         <p>80₽/сутки</p>
@@ -97,7 +106,7 @@ const ParkingPage = ({...props}) => {
         />
       </div>
       <p className="place">Места: есть</p>
-      <Button>Забронировать</Button>
+      <Button action={() => setShowPopup(true)}>Забронировать</Button>
     </Container>
   )
 };

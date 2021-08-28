@@ -108,4 +108,42 @@ const Container = styled.div`
   }
 `;
 
-export {Container};
+const PopupCont = styled.div`
+  position: absolute;
+  left: 0;
+  top: ${props => props.top}px;
+  width: 100vw;
+  min-height: 100vh;
+  background: #000a;
+  z-index: 1;
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    max-width: 400px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #fff;
+    transform: translate(-50%, -50%);
+    h1 {
+      font-size: 24px;
+      text-align: center;
+    }
+    .period {
+      display: grid;
+      grid-template-columns: auto auto auto;
+      justify-content: space-between;
+      grid-gap: 10px;
+    }
+    .price {
+      text-align: center;
+      span {
+        font-weight: bold;
+      }
+    }
+    
+  }
+`;
+
+export {Container, PopupCont};

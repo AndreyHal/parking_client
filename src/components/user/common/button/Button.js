@@ -3,7 +3,7 @@ import {Container} from "./styles";
 
 const Button = ({...props}) => {
   return(
-    <Container>
+    <Container onClick={props.action}>
       {props.children}
     </Container>
   )

@@ -6,6 +6,7 @@ import Login from './components/user/login/Login';
 import ResetPass from './components/user/resetPass/ResetPass';
 import Main from './components/user/main/Main';
 import ParkingPage from "./components/user/parkingPage/ParkingPage";
+import Success from "./components/user/success/Success";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route exact path='/resetPass' component={ResetPass} />
         <Route exact path='/main' component={Main} />
         <Route exact path='/main/:id' component={ParkingPage} />
+        <Route exact path='/success' component={Success} />
         {/*  ====  */}
       </Switch>
     </BrowserRouter>
