@@ -7,17 +7,15 @@ const ResetPass = () => {
   return(
     <Container>
       <TitlePage>Восстановление пароля</TitlePage>
-      <div className="form">
-        <input type="text"
-               placeholder='Телефон'
-        />
-        <input type="text"
-               placeholder='Пароль'
-        />
-        <input type="text"
-               placeholder='Повторите пароль'
-        />
-      </div>
+      <input type="text"
+             placeholder='Телефон'
+      />
+      <input type="text"
+             placeholder='Пароль'
+      />
+      <input type="text"
+             placeholder='Повторите пароль'
+      />
       <Button>Сбросить</Button>
     </Container>
   )

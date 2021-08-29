@@ -7,14 +7,12 @@ const Login = () => {
   return(
     <Container>
       <TitlePage>Авторизация</TitlePage>
-      <div className="form">
-        <input type="text"
-               placeholder='Телефон'
-        />
-        <input type="text"
-               placeholder='Пароль'
-        />
-      </div>
+      <input type="text"
+             placeholder='Телефон'
+      />
+      <input type="text"
+             placeholder='Пароль'
+      />
       <Button>Войти</Button>
     </Container>
   )

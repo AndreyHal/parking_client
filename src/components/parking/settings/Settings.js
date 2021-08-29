@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Container} from "./styles";
-import Popup from "./Popup";
-import Button from "../common/button/Button";
+import TitlePage from "../../user/common/titlePage/TitlePage";
+import Button from "../../user/common/button/Button";
+import close from '../../../img/close.png';
 
-const ParkingPage = ({...props}) => {
+const Settings = () => {
   const [selected_slide, setSelectedSlide] = useState(0);
-  const [show_popup, setShowPopup] = useState(false);
-  const photos = [
+  const [files, setFiles] = useState([]);
+  let photos = [
     {
       url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
       main: true
@@ -52,19 +53,28 @@ const ParkingPage = ({...props}) => {
     setSelectedSlide(selected_slide - 1);
   };
 
-  useEffect(() => {
-    document.body.style.overflow = show_popup ? 'hidden' : '';
-  }, [show_popup]);
+  const addPhoto = (e) => {
+    let input_files = e.target.files;
+    let arr = [...files];
+    for(let i=0; i<input_files.length; i++) {
+      arr.push(input_files[i]);
+    }
+    setFiles(arr);
+  };
+
+  const deleteNewPhoto = (index) => {
+    let arr = [...files];
+    arr.splice(index, 1);
+    setFiles(arr);
+  };
+
+  const deletePhoto = (index) => {
+    photos.splice(index, 1);
+  };
 
   return(
     <Container>
-      {
-        show_popup && <Popup close={() => setShowPopup(false)}/>
-      }
-      <div className="header">
-        <h2>Парковка 1</h2>
-        <p>80₽/сутки</p>
-      </div>
+      <TitlePage>Настройки</TitlePage>
       <div className="slider">
         <div className="slides">
           {
@@ -78,7 +88,11 @@ const ParkingPage = ({...props}) => {
                    key={index}
                    onClick={() => switchSlide(index)}
               >
+                <img src={close} className="delete" onClick={index => deletePhoto(index)} alt=""/>
                 <img src={item.url} alt=""/>
+                {
+                  !item.main && <div className="btn">Сделать главной</div>
+                }
               </div>
             ))
           }
@@ -91,21 +105,56 @@ const ParkingPage = ({...props}) => {
           }
         </div>
       </div>
-      <div className="desc">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cupiditate
-        nesciunt, nostrum nulla praesentium quaerat quam ratione! Est maxime, quisquam!
-      </div>
-      <p className="address">г. Челябинск, ул. Коммуны, д. 125</p>
-      <div className="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1355.2099179127322!2d61.38591050624734!3d55.1625862202672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1630159565540!5m2!1sru!2sru"
-          allowFullScreen="" loading="lazy"
+      <label>
+        <div className='addPhoto'>Загрузить фото</div>
+        <input type="file"
+               onChange={addPhoto}
+               accept='image'
+               multiple
+               hidden
         />
+      </label>
+      <div className="newPhotos">
+        {
+          files.map((item, index) => (
+            <div className="titlePhoto" key={index}>
+              <span>{item.name}</span>
+              <img src={close} onClick={() => deleteNewPhoto(index)} alt=""/>
+            </div>
+          ))
+        }
       </div>
-      <p className="place">Места: есть</p>
-      <Button action={() => setShowPopup(true)}>Забронировать</Button>
+      <input type="text"
+             placeholder='Название'
+      />
+      <input type="text"
+             placeholder='Описание'
+      />
+      <input type="text"
+             placeholder='Город'
+      />
+      <input type="text"
+             placeholder='Улица'
+      />
+      <input type="text"
+             placeholder='Дом'
+      />
+      <input type="text"
+             placeholder='Количество всех мест'
+      />
+      <input type="text"
+             placeholder='Стоимость (руб.)'
+      />
+      <input type="text"
+             placeholder='Телефон'
+      />
+      <input type="text"
+             placeholder='Почта'
+      />
+      <Button>Сохранить</Button>
+      <Button>Отмена</Button>
     </Container>
   )
 };
 
-export default ParkingPage;
+export default Settings;

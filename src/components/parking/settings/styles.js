@@ -1,23 +1,6 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 20px;
-  .header {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-gap: 20px;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    margin-bottom: 20px;
-    h2 {
-      font-size: 30px;
-      margin: 0;
-    }
-    p {
-      margin: 0;
-    }
-  }
   .slider {
     width: 100%;
     max-width: 400px;
@@ -59,10 +42,37 @@ const Container = styled.div`
         &.prevPrev {
           left: -25%;
         }
+        .delete {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 20px;
+          cursor: pointer;
+        }
+        &.active .delete {
+          top: 22px;
+        }
         img {
           width: 100%;
           aspect-ratio: 1;
           object-fit: cover;
+        }
+        .btn {
+          position: absolute;
+          bottom: 8px;
+          left: 50%;
+          font-size: 8px;
+          text-align: center;
+          padding: 5px 10px;
+          width: 70%;
+          border-radius: 20px;
+          background: #fff;
+          transform: translateX(-50%);
+          cursor: pointer;
+        }
+        &.active .btn {
+          bottom: 27px;
+          font-size: 14px;
         }
       }
     }
@@ -84,62 +94,42 @@ const Container = styled.div`
       }
     }
   }
-  .decs {
-    
-  }
-  .address {
-    font-weight: bold;
-  }
-  .map {
-    width: 100%;
-    max-width: 400px;
-    aspect-ratio: 1;
-    //filter: invert(1);
+  .addPhoto {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background: #ccc;
     border-radius: 5px;
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    font-size: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      background: #bbb;
     }
   }
-`;
-
-const PopupCont = styled.div`
-  position: absolute;
-  left: 0;
-  top: ${props => props.top}px;
-  width: 100vw;
-  min-height: 100vh;
-  background: #000a;
-  z-index: 1;
-  .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 90%;
-    max-width: 400px;
-    padding: 10px;
-    border-radius: 10px;
-    background: #fff;
-    transform: translate(-50%, -50%);
-    h1 {
-      font-size: 24px;
-      text-align: center;
-    }
-    .period {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      justify-content: space-between;
-      grid-gap: 10px;
-    }
-    .price {
-      text-align: center;
-      span {
-        font-weight: bold;
+  input[type='file'] {
+    display: none;
+  }
+  .newPhotos {
+    margin: 10px 15px;
+    .titlePhoto {
+      position: relative;
+      display: inline-block;
+      padding: 5px 40px 5px 10px;
+      margin: 5px;
+      border-radius: 20px;
+      background: #ccc;
+      img {
+        position: absolute;
+        right: 2px;
+        top: 50%;
+        width: 25px;
+        transform: translateY(-50%);
       }
     }
-    
   }
 `;
 
-export {Container, PopupCont};
+export {Container};
