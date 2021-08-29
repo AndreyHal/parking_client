@@ -72,6 +72,10 @@ const Settings = () => {
     photos.splice(index, 1);
   };
 
+  const makeIsMain = (index) => {
+    photos.map((item, indexImg) => item.main = index === indexImg);
+  };
+
   return(
     <Container>
       <TitlePage>Настройки</TitlePage>
@@ -91,7 +95,7 @@ const Settings = () => {
                 <img src={close} className="delete" onClick={index => deletePhoto(index)} alt=""/>
                 <img src={item.url} alt=""/>
                 {
-                  !item.main && <div className="btn">Сделать главной</div>
+                  !item.main && <div className="btn" onClick={index => makeIsMain(index)}>Сделать главной</div>
                 }
               </div>
             ))
