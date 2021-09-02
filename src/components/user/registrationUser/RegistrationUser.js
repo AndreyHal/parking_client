@@ -53,7 +53,7 @@ const RegistrationUser = () => {
                    value={repeat_pass}
                    onChange={e => setRepeatPass(e.target.value)}
             />
-            <Button>Зарегистрироваться</Button>
+            <Button action={() => window.location.href = '/confirmPhone'}>Зарегистрироваться</Button>
         </Container>
     </Wrapper>
   )

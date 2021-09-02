@@ -1,44 +1,37 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Container} from "./styles";
+import Wrapper from "../common/wrapper/Wrapper";
 import TitlePage from '../common/titlePage/TitlePage';
-import Button from "../common/button/Button";
 
 const ConfirmPhone = () => {
-  const [sec, setSec] = useState(300);
-  const [can_send, setCanSend] = useState(false);
-
-  const sendCode = () => {
-    setSec(300);
-    setCanSend(false);
-  };
-
-  useEffect(() => {
-    let timer = setInterval(() => {
-      setSec(sec-1);
-    }, 1000);
-
-    if(sec === 0) {
-      clearInterval(timer);
-      setCanSend(true);
-    }
-
-    return () => clearInterval(timer);
-  }, [sec]);
+  const [code, setCode] = useState('');
 
   return(
-    <Container>
-      <TitlePage>Подтверждение телефона</TitlePage>
-      <input type="text"
-             placeholder='Код из СМС'
-      />
-      {
-        can_send ?
-          <p className='send' onClick={sendCode}>Выслать код заново</p>
-          :
-          <p>Выслать код заново можно через {sec} секунд</p>
-      }
-      <Button>Подтвердить</Button>
-    </Container>
+    <Wrapper>
+      <Container>
+        <TitlePage>Подтверждение телефона</TitlePage>
+        <div className="code">
+          <div className="number"><span>{code[0]}</span></div>
+          <div className="number"><span>{code[1]}</span></div>
+          <div className="number"><span>{code[2]}</span></div>
+          <div className="number"><span>{code[3]}</span></div>
+        </div>
+        <div className="keyboard">
+          <div className="key"><span>1</span></div>
+          <div className="key"><span>2</span></div>
+          <div className="key"><span>3</span></div>
+          <div className="key"><span>4</span></div>
+          <div className="key"><span>5</span></div>
+          <div className="key"><span>6</span></div>
+          <div className="key"><span>7</span></div>
+          <div className="key"><span>8</span></div>
+          <div className="key"><span>9</span></div>
+          <div className="key"><span></span></div>
+          <div className="key"><span>0</span></div>
+          <div className="key"><span></span></div>
+        </div>
+      </Container>
+    </Wrapper>
   )
 }
 
