@@ -4,7 +4,12 @@ import {Container} from "./styles";
 const Button = ({...props}) => {
   return(
     <Container onClick={props.action}>
-      {props.children}
+      {/*<div className="border">*/}
+
+      {/*</div>*/}
+      {/*<div>*/}
+        <span>{props.children}</span>
+      {/*</div>*/}
     </Container>
   )
 };

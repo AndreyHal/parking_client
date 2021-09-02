@@ -1,19 +1,40 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 30px auto;
-  padding: 10px;
-  width: 90%;
-  max-width: 400px;
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  margin: 50px auto;
+  padding: 15px 40px;
   box-sizing: border-box;
-  background: #ccc;
-  border-radius: 5px;
-  font-size: 18px;
+  border-radius: var(--radius);
+  font-size: var(--middle_font);
   text-align: center;
   text-transform: uppercase;
+  background: linear-gradient(to right, var(--yellow), var(--orange));
   cursor: pointer;
+  z-index: 1;
+  span {
+    background: linear-gradient(to right, var(--yellow), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    background: var(--black);
+    border-radius: var(--radius);
+    z-index: -1;
+  }
   &:hover {
-    background: #bbb;
+    //background: #bbb;
+  }
+  @media(max-width: 380px) {
+    font-size: var(--font_em);
   }
 `;
 
