@@ -3,6 +3,7 @@
   --silver: #C5C9C7;
   --yellow: #FCBD17;
   --orange: #DC622E;
+  --red: #A22A2A;
   --black: #1B1B1B;
   --black_light: #252525;
   --big_font: 28px;
@@ -21,4 +22,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;
 }

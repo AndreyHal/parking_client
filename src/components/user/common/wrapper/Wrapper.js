@@ -3,7 +3,7 @@ import {Container} from "./styles";
 
 const Wrapper = ({...props}) => {
   return(
-    <Container>
+    <Container wide={props.wide}>
       {props.children}
     </Container>
   )

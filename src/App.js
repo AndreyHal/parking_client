@@ -13,11 +13,16 @@ import Reservations from "./components/parking/reservations/Reservations";
 import ReservationPage from "./components/parking/reservationPage/ReservationPage";
 import Settings from "./components/parking/settings/Settings";
 
+const Link = () => {
+  return <a href='/registrationUser'>rega</a>
+};
+
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
         {/*  user  */}
+        <Route exact path='/' component={Link} />
         <Route exact path='/registrationUser' component={RegistrationUser} />
         <Route exact path='/confirmPhone' component={ConfirmPhone} />
         <Route exact path='/login' component={Login} />

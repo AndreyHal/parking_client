@@ -1,13 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import {Container} from "./styles";
+import Wrapper from "../common/wrapper/Wrapper";
 import Search from "../common/search/Search";
 import TitlePage from "../common/titlePage/TitlePage";
+import Settings from "../settings/Settings";
 import ParkingTile from '../common/parkingTile/ParkingTile';
 import MainTabs from "../common/mainTabs/MainTabs";
 
 const Main = () => {
   const [parking_list, setParkingList] = useState([]);
-  const [tab, setTab] = useState('main'); //main, favorites, booked
+  const [tab, setTab] = useState('main'); //main, favorites, booked, settings
 
   useEffect(() => {
     let list = [];
@@ -448,20 +450,29 @@ const Main = () => {
   }, [tab]);
 
   return(
-    <Container>
-      {
-        tab === 'main' ?
-          <Search/>
-          :
-          <TitlePage>{tab === 'favorites' ? 'Избранное' : 'Забронировано'}</TitlePage>
-      }
-      {
-        parking_list.map((item, index) => (
-          <ParkingTile key={index} {...item}/>
-        ))
-      }
-      <MainTabs tab={tab} setTab={setTab}/>
-    </Container>
+    <Wrapper wide>
+      <Container>
+        {
+          tab === 'main' ?
+            <Search/>
+            :
+            <TitlePage>
+              {tab === 'favorites' ? 'Избранное' : ''}
+              {tab === 'booked' ? 'Забронировано' : ''}
+              {tab === 'settings' ? 'Профиль' : ''}
+            </TitlePage>
+        }
+        {
+          tab === 'settings' ?
+            <Settings/>
+            :
+            parking_list.map((item, index) => (
+              <ParkingTile key={index} {...item}/>
+            ))
+        }
+        <MainTabs tab={tab} setTab={setTab}/>
+      </Container>
+    </Wrapper>
   )
 };
 
