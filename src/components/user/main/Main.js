@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import {Container} from "./styles";
 import Wrapper from "../common/wrapper/Wrapper";
 import Search from "../common/search/Search";
 import TitlePage from "../common/titlePage/TitlePage";
 import Settings from "../settings/Settings";
 import ParkingTile from '../common/parkingTile/ParkingTile';
+import ParkingPage from "../parkingPage/ParkingPage";
 import MainTabs from "../common/mainTabs/MainTabs";
 
 const Main = () => {
   const [parking_list, setParkingList] = useState([]);
+  const [parking_id, setParkingId] = useState(null);
   const [tab, setTab] = useState('main'); //main, favorites, booked, settings
 
   useEffect(() => {
@@ -167,8 +169,8 @@ const Main = () => {
           favorite: true
         },
         {
-          title: 'Парковка 5',
-          id: 5,
+          title: 'Парковка 6',
+          id: 6,
           photos: [
             {
               url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -197,8 +199,8 @@ const Main = () => {
           favorite: true
         },
         {
-          title: 'Парковка 5',
-          id: 5,
+          title: 'Парковка 7',
+          id: 7,
           photos: [
             {
               url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -227,8 +229,8 @@ const Main = () => {
           favorite: true
         },
         {
-          title: 'Парковка 5',
-          id: 5,
+          title: 'Парковка 8',
+          id: 8,
           photos: [
             {
               url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -257,8 +259,8 @@ const Main = () => {
           favorite: true
         },
         {
-          title: 'Парковка 5',
-          id: 5,
+          title: 'Парковка 9',
+          id: 9,
           photos: [
             {
               url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -287,8 +289,8 @@ const Main = () => {
           favorite: true
         },
         {
-          title: 'Парковка 5',
-          id: 5,
+          title: 'Парковка 10',
+          id: 10,
           photos: [
             {
               url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -317,8 +319,8 @@ const Main = () => {
           favorite: true
         },
         {
-          title: 'Парковка 5',
-          id: 5,
+          title: 'Парковка 11',
+          id: 11,
           photos: [
             {
               url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -447,28 +449,36 @@ const Main = () => {
       ];
     }
     setParkingList(list);
+    setParkingId(null);
   }, [tab]);
 
   return(
     <Wrapper wide>
       <Container>
         {
-          tab === 'main' ?
-            <Search/>
+          !!parking_id ?
+            <ParkingPage id={parking_id}/>
             :
-            <TitlePage>
-              {tab === 'favorites' ? 'Избранное' : ''}
-              {tab === 'booked' ? 'Забронировано' : ''}
-              {tab === 'settings' ? 'Профиль' : ''}
-            </TitlePage>
-        }
-        {
-          tab === 'settings' ?
-            <Settings/>
-            :
-            parking_list.map((item, index) => (
-              <ParkingTile key={index} {...item}/>
-            ))
+            <Fragment>
+              {
+                tab === 'main' ?
+                  <Search/>
+                  :
+                  <TitlePage>
+                    {tab === 'favorites' ? 'Избранное' : ''}
+                    {tab === 'booked' ? 'Забронировано' : ''}
+                    {tab === 'settings' ? 'Профиль' : ''}
+                  </TitlePage>
+              }
+              {
+                tab === 'settings' ?
+                  <Settings/>
+                  :
+                  parking_list.map((item, index) => (
+                    <ParkingTile key={index} {...item} setParkingId={setParkingId}/>
+                  ))
+              }
+            </Fragment>
         }
         <MainTabs tab={tab} setTab={setTab}/>
       </Container>

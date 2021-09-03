@@ -1,20 +1,22 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  padding: 20px;
+  //padding: 20px;
   .header {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 20px;
     justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-    margin-bottom: 20px;
+    //align-items: center;
+    //font-weight: bold;
+    margin-bottom: 30px;
+    color: var(--gold);
     h2 {
-      font-size: 30px;
+      font-size: var(--big_font);
       margin: 0;
     }
     p {
+      font-size: var(--middle_font);
       margin: 0;
     }
   }
@@ -84,22 +86,66 @@ const Container = styled.div`
       }
     }
   }
-  .decs {
-    
+  .desc {
+    font-size: var(--middle_font);
+    font-weight: var(--font_weight_light);
+    color: var(--silver);
+    text-align: justify;
+    margin-top: 30px;
   }
   .address {
-    font-weight: bold;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 20px;
+    justify-content: space-between;
+    margin-top: 15px;
+    p {
+      margin: 0;
+      font-size: var(--middle_font);
+      font-weight: var(--font_weight_light);
+      &:first-child {
+        color: var(--gold);
+      }
+      &:last-child {
+        color: var(--silver);
+      }
+    }
   }
   .map {
     width: 100%;
-    max-width: 400px;
     aspect-ratio: 1;
+    margin: 15px 0;
+    overflow: hidden;
     //filter: invert(1);
-    border-radius: 5px;
+    border-radius: var(--radius);
     iframe {
       width: 100%;
       height: 100%;
       border: none;
+    }
+  }
+  .checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media(max-width: 400px) {
+    .checkboxes {
+      grid-template-columns: 1fr;
+      label {
+        margin-top: 5px;
+        input {
+          width: 18px;
+          height: 18px;
+          &:before {
+            width: 5px;
+            height: 9px;
+            transform: translate(-50%, -65%) rotateZ(45deg);
+          }
+        }
+        span {
+          font-size: var(--middle_font);
+        }
+      }
     }
   }
 `;
