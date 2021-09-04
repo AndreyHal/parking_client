@@ -3,7 +3,8 @@ import {Container} from "./styles";
 import Input from "../common/input/Input";
 import Checkbox from "../common/checkbox/Checkbox";
 import Button from "../common/button/Button";
-import { YMaps, Map } from 'react-yandex-maps';
+import { YMaps, Map, ZoomControl, GeolocationControl, Placemark } from 'react-yandex-maps';
+import marker_icon from '../../img/marker_icon.png';
 
 const ParkingPage = ({id}) => {
   const [selected_slide, setSelectedSlide] = useState(0);
@@ -124,7 +125,16 @@ const ParkingPage = ({id}) => {
       </div>
       <div className="map">
         <YMaps>
-          <Map defaultState={{ center: center, zoom: 15 }} width='100%' height='100%'/>
+          <Map defaultState={{ center: center, zoom: 15 }} width='100%' height='100%'>
+            <ZoomControl options={{ float: 'right' }} />
+            <GeolocationControl options={{ float: 'left' }} />
+            <Placemark geometry={center} options={{
+              iconLayout: 'default#image',
+              iconImageHref: marker_icon,
+              iconImageSize: [40, 40],
+              iconImageOffset: [-20, -20],
+            }}/>
+          </Map>
         </YMaps>
       </div>
       <div className="checkboxes">
