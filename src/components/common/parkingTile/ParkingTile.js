@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container} from "./styles";
-import fill_star_icon from '../../../../img/fill_star_icon.png';
-import star_icon from '../../../../img/star_icon.png';
+import fill_star_icon from '../../../img/fill_star_icon.png';
+import star_icon from '../../../img/star_icon.png';
 
 const ParkingTile = ({...props}) => {
   const addFavorite = () => {

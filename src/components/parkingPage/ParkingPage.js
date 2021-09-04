@@ -3,6 +3,7 @@ import {Container} from "./styles";
 import Input from "../common/input/Input";
 import Checkbox from "../common/checkbox/Checkbox";
 import Button from "../common/button/Button";
+import { YMaps, Map } from 'react-yandex-maps';
 
 const ParkingPage = ({id}) => {
   const [selected_slide, setSelectedSlide] = useState(0);
@@ -11,6 +12,7 @@ const ParkingPage = ({id}) => {
   const [start_date, setStartDate] = useState('');
   const [end_date, setEndDate] = useState('');
   const [code, setCode] = useState('');
+  const [center, setCenter] = useState(null);
   const photos = [
     {
       url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -69,6 +71,14 @@ const ParkingPage = ({id}) => {
     setCode('');
   };
 
+  useEffect(() => {
+    const success = (pos) => {
+      setCenter([pos.coords.latitude, pos.coords.longitude]);
+    };
+
+    navigator.geolocation.getCurrentPosition(success);
+  }, []);
+
   return(
     <Container>
       {/*{*/}
@@ -113,10 +123,9 @@ const ParkingPage = ({id}) => {
         <p className="place">Места есть</p>
       </div>
       <div className="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1355.2099179127322!2d61.38591050624734!3d55.1625862202672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1630159565540!5m2!1sru!2sru"
-          allowFullScreen="" loading="lazy"
-        />
+        <YMaps>
+          <Map defaultState={{ center: center, zoom: 15 }} width='100%' height='100%'/>
+        </YMaps>
       </div>
       <div className="checkboxes">
         <div className="left">

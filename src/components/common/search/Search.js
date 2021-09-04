@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from "./styles";
-import search_icon from '../../../../img/search_icon.png';
+import search_icon from '../../../img/search_icon.png';
 
 const Search = () => {
   return(

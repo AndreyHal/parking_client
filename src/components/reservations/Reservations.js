@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container} from "./styles";
-import TitlePage from "../../user/common/titlePage/TitlePage";
+import TitlePage from "../common/titlePage/TitlePage";
 import Search from "../common/search/Search";
 import ReservationTile from "../common/reservationTile/ReservationTile";
 

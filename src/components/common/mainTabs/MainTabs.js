@@ -1,13 +1,13 @@
 import React from 'react';
 import {Container} from "./styles";
-import parking_icon from '../../../../img/parking_icon.png';
-import parking_gray_icon from '../../../../img/parking_gray_icon.png';
-import fill_star_icon from '../../../../img/fill_star_icon.png';
-import fill_star_gray_icon from '../../../../img/fill_star_gray_icon.png';
-import marker_icon from '../../../../img/marker_icon.png';
-import marker_gray_icon from '../../../../img/marker_gray_icon.png';
-import settings_icon from '../../../../img/settings_icon.png';
-import settings_gray_icon from '../../../../img/settings_gray_icon.png';
+import parking_icon from '../../../img/parking_icon.png';
+import parking_gray_icon from '../../../img/parking_gray_icon.png';
+import fill_star_icon from '../../../img/fill_star_icon.png';
+import fill_star_gray_icon from '../../../img/fill_star_gray_icon.png';
+import marker_icon from '../../../img/marker_icon.png';
+import marker_gray_icon from '../../../img/marker_gray_icon.png';
+import settings_icon from '../../../img/settings_icon.png';
+import settings_gray_icon from '../../../img/settings_gray_icon.png';
 
 const MainTabs = ({tab, setTab}) => {
   return(

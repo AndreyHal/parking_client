@@ -1,7 +1,7 @@
 import React, {Fragment, useState} from 'react';
 import {Container} from "./styles";
-import TitlePage from "../../user/common/titlePage/TitlePage";
-import Button from "../../user/common/button/Button";
+import TitlePage from "../common/titlePage/TitlePage";
+import Button from "../common/button/Button";
 
 const RegistrationParking = () => {
   const [next_page, setNextPage] = useState(false);

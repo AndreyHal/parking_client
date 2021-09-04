@@ -3,7 +3,7 @@ import {Container} from "./styles";
 import Wrapper from "../common/wrapper/Wrapper";
 import Search from "../common/search/Search";
 import TitlePage from "../common/titlePage/TitlePage";
-import Settings from "../settings/Settings";
+import SettingsUser from "../settingsUser/SettingsUser";
 import ParkingTile from '../common/parkingTile/ParkingTile';
 import ParkingPage from "../parkingPage/ParkingPage";
 import MainTabs from "../common/mainTabs/MainTabs";
@@ -472,7 +472,7 @@ const Main = () => {
               }
               {
                 tab === 'settings' ?
-                  <Settings/>
+                  <SettingsUser/>
                   :
                   parking_list.map((item, index) => (
                     <ParkingTile key={index} {...item} setParkingId={setParkingId}/>

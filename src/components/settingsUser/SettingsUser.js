@@ -3,7 +3,7 @@ import {Container} from "./styles";
 import Input from "../common/input/Input";
 import Button from "../common/button/Button";
 
-const Settings = () => {
+const SettingsUser = () => {
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [num_of_car, setNumOfCar] = useState('');
@@ -43,4 +43,4 @@ const Settings = () => {
   )
 };
 
-export default Settings;
+export default SettingsUser;

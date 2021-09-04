@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {Container} from "./styles";
-import TitlePage from "../../user/common/titlePage/TitlePage";
-import Button from "../../user/common/button/Button";
-import close from '../../../img/close.png';
+import TitlePage from "../common/titlePage/TitlePage";
+import Button from "../common/button/Button";
+import close from '../../img/close.png';
 
-const Settings = () => {
+const SettingsParking = () => {
   const [selected_slide, setSelectedSlide] = useState(0);
   const [files, setFiles] = useState([]);
   let photos = [
@@ -161,4 +161,4 @@ const Settings = () => {
   )
 };
 
-export default Settings;
+export default SettingsParking;

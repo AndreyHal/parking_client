@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Container} from "./styles";
-import show_pass_icon from '../../../../img/show_pass.svg';
+import show_pass_icon from '../../../img/show_pass.svg';
 
 const Input = ({...props}) => {
   const [show_pass, setShowPass] = useState(false);

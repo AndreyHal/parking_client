@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Container} from "./styles";
 import Wrapper from "../common/wrapper/Wrapper";
 import TitlePage from '../common/titlePage/TitlePage';
-import arrow_icon from '../../../img/arrow_icon.png';
+import arrow_icon from '../../img/arrow_icon.png';
 
 const ConfirmPhone = () => {
   const [code, setCode] = useState('');
