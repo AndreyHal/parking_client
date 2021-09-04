@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  //padding: 20px;
   .header {
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 20px;
     justify-content: space-between;
-    //align-items: center;
-    //font-weight: bold;
     margin-bottom: 30px;
     color: var(--gold);
     h2 {
@@ -27,7 +24,7 @@ const Container = styled.div`
     .slides {
       position: relative;
       width: 100%;
-      height: 140px;
+      height: 200px;
       overflow: hidden;
       .slide {
         position: absolute;
@@ -35,7 +32,7 @@ const Container = styled.div`
         top: 50%;
         width: 25%;
         aspect-ratio: 1;
-        border-radius: 5px;
+        border-radius: var(--radius);
         opacity: 0;
         transform: translateY(-50%);
         transition: 0.5s;
@@ -74,14 +71,13 @@ const Container = styled.div`
       margin: 0 auto;
       .dot {
         display: inline-block;
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
         margin: 0 3px;
-        border: 1px solid #000;
         border-radius: 50%;
-        background: #aaa;
+        background: var(--silver);
         &.active {
-          background: #fff;
+          background: var(--gold);
         }
       }
     }
@@ -128,6 +124,38 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
+  .period {
+    display: grid;
+    grid-template-columns: 130px 45px 130px;
+    justify-content: center;
+    grid-gap: 30px;
+    margin: 20px 0 80px;
+    .date {
+      text-align: center;
+      input {
+        text-align: center;
+        font-weight: var(--font_weight_light);
+      }
+      span {
+        width: 100%;
+        font-size: var(--small_font);
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .price {
+      position: relative;
+      font-size: var(--middle_font);
+      color: var(--gold);
+      span {
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        text-transform: uppercase;
+        transform: translateX(-50%);
+      }
+    }
+  }
   @media(max-width: 400px) {
     .checkboxes {
       grid-template-columns: 1fr;
@@ -144,6 +172,61 @@ const Container = styled.div`
         }
         span {
           font-size: var(--middle_font);
+        }
+      }
+    }
+  }
+  @media(max-width: 380px) {
+    .header {
+      h2 {
+        font-size: var(--middle_font);
+      }
+      p {
+        font-size: var(--small_font);
+      }
+    }
+    .slider {
+      .slides {
+        height: 150px;
+      }
+    }
+    .desc {
+      font-size: var(--small_font);
+    }
+    .address {
+      p {
+        font-size: var(--small_font);
+      }
+    }
+    .checkboxes {
+      label {
+        input {
+          width: 15px;
+          height: 15px;
+          &:before {
+            width: 4px;
+            height: 7px;
+            transform: translate(-55%, -65%) rotateZ(45deg);
+          }
+        }
+        span {
+          font-size: var(--small_font);
+        }
+      }
+    }
+    .period {
+      grid-template-columns: 100px 45px 100px;
+      grid-gap: 20px;
+      margin: 20px 0 80px;
+      .date {
+        span {
+          font-size: var(--font_em);
+        }
+      }
+      .price {
+        font-size: var(--small_font);
+        span {
+          bottom: -20px;
         }
       }
     }

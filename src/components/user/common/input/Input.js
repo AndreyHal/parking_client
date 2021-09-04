@@ -6,7 +6,7 @@ const Input = ({...props}) => {
   const [show_pass, setShowPass] = useState(false);
 
   return(
-    <Container>
+    <Container className={props.className}>
       <span className={props.value || props.defaultValue ? 'top' : ''}>{props.placeholder}</span>
       {
         props.type === 'password' && <img src={show_pass_icon} onClick={() => setShowPass(!show_pass)} alt=""/>

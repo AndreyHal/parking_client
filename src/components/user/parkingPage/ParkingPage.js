@@ -7,6 +7,10 @@ import Button from "../common/button/Button";
 const ParkingPage = ({id}) => {
   const [selected_slide, setSelectedSlide] = useState(0);
   const [show_popup, setShowPopup] = useState(false);
+  const [show_period, setShowPeriod] = useState(false);
+  const [start_date, setStartDate] = useState('');
+  const [end_date, setEndDate] = useState('');
+  const [code, setCode] = useState('');
   const photos = [
     {
       url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -56,6 +60,14 @@ const ParkingPage = ({id}) => {
   // useEffect(() => {
   //   document.body.style.overflow = show_popup ? 'hidden' : '';
   // }, [show_popup]);
+
+  const booking = () => {
+    setCode('G3E4BH');
+  }
+
+  const cancelBooking = () => {
+    setCode('');
+  };
 
   return(
     <Container>
@@ -130,7 +142,32 @@ const ParkingPage = ({id}) => {
           />
         </div>
       </div>
-      <Button>Выбрать даты</Button>
+      {
+        show_period &&
+          <div className='period'>
+            <Input type='text'
+                   placeholder='Начальная дата'
+                   className='date'
+                   value={start_date}
+                   onChange={e => setStartDate(e.target.value)}
+            />
+            <div className='price'>
+              <span>{code ? code : '140₽'}</span>
+            </div>
+            <Input type='text'
+                   placeholder='Конечная дата'
+                   className='date'
+                   value={end_date}
+                   onChange={e => setEndDate(e.target.value)}
+            />
+          </div>
+      }
+      {
+        code ?
+          <Button action={cancelBooking}>Отменнить бронь</Button>
+          :
+          <Button action={show_period ? booking : () => setShowPeriod(true)}>{show_period ? 'Забронировать' : 'Выбрать даты'}</Button>
+      }
     </Container>
   )
 };
