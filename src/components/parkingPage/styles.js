@@ -20,7 +20,7 @@ const Container = styled.div`
   .slider {
     width: 100%;
     max-width: 400px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     .slides {
       position: relative;
       width: 100%;

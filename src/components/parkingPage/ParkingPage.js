@@ -73,11 +73,7 @@ const ParkingPage = ({id}) => {
   };
 
   useEffect(() => {
-    const success = (pos) => {
-      setCenter([pos.coords.latitude, pos.coords.longitude]);
-    };
-
-    navigator.geolocation.getCurrentPosition(success);
+    setCenter([55.16210050690382, 61.38369778877151]);
   }, []);
 
   return(
