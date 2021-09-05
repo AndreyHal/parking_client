@@ -7,10 +7,16 @@ import ResetPass from './components/resetPass/ResetPass';
 import Main from './components/main/Main';
 import ParkingPage from "./components/parkingPage/ParkingPage";
 import RegistrationParking from "./components/registrationParking/RegistrationParking";
-import Reservations from "./components/reservations/Reservations";
+import MainParking from "./components/mainParking/MainParking";
 
 const Link = () => {
-  return <a href='/registrationUser'>rega</a>
+  return (
+    <div>
+      <a href='/registrationUser'>регистрация юзера</a>
+      <br/>
+      <a href='/registrationParking'>регистрация парковки</a>
+    </div>
+  )
 };
 
 const App = () => {
@@ -28,7 +34,7 @@ const App = () => {
         {/*  ====  */}
         {/*  parking  */}
         <Route exact path='/registrationParking' component={RegistrationParking} />
-        <Route exact path='/reservations' component={Reservations} />
+        <Route exact path='/mainParking' component={MainParking} />
         {/*  =======  */}
       </Switch>
     </BrowserRouter>

@@ -4,19 +4,18 @@ const Container = styled.div`
   .slider {
     width: 100%;
     max-width: 400px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     .slides {
       position: relative;
       width: 100%;
-      height: 140px;
+      height: 200px;
       overflow: hidden;
       .slide {
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: 55%;
         width: 25%;
         aspect-ratio: 1;
-        border-radius: 5px;
         opacity: 0;
         transform: translateY(-50%);
         transition: 0.5s;
@@ -25,6 +24,9 @@ const Container = styled.div`
           width: 45%;
           opacity: 1;
           transform: translate(-50%, -50%);
+          .delete, .gradient-button {
+            display: block;
+          }
         }
         &.next {
           left: 75%;
@@ -42,37 +44,41 @@ const Container = styled.div`
         &.prevPrev {
           left: -25%;
         }
-        .delete {
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 20px;
-          cursor: pointer;
-        }
-        &.active .delete {
-          top: 22px;
-        }
         img {
           width: 100%;
           aspect-ratio: 1;
           object-fit: cover;
+          border-radius: var(--radius);
         }
-        .btn {
+        .delete {
+          display: none;
           position: absolute;
-          bottom: 8px;
-          left: 50%;
-          font-size: 8px;
-          text-align: center;
-          padding: 5px 10px;
-          width: 70%;
-          border-radius: 20px;
-          background: #fff;
-          transform: translateX(-50%);
-          cursor: pointer;
+          right: 0;
+          top: 0;
+          width: 25px;
+          border-radius: 50%;
+          transform: translate(50%, -50%);
+          background: var(--silver);
         }
-        &.active .btn {
-          bottom: 27px;
-          font-size: 14px;
+        .gradient-button {
+          display: none;
+          position: absolute;
+          left: 50%;
+          bottom: 15px;
+          width: 80%;
+          padding: 7px;
+          margin: 0;
+          border-radius: 20px;
+          transform: translateX(-50%);
+          font-size: var(--small_small_font);
+          font-weight: var(--font_weight_light);
+          &:before {
+            top: 1px;
+            bottom: 1px;
+            left: 1px;
+            right: 1px;
+            border-radius: 20px;
+          }
         }
       }
     }
@@ -82,14 +88,13 @@ const Container = styled.div`
       margin: 0 auto;
       .dot {
         display: inline-block;
-        width: 8px;
-        height: 8px;
+        width: 7px;
+        height: 7px;
         margin: 0 3px;
-        border: 1px solid #000;
         border-radius: 50%;
-        background: #aaa;
+        background: var(--silver);
         &.active {
-          background: #fff;
+          background: var(--gold);
         }
       }
     }
@@ -112,22 +117,86 @@ const Container = styled.div`
   input[type='file'] {
     display: none;
   }
-  .newPhotos {
-    margin: 10px 15px;
-    .titlePhoto {
+  .new-photos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    grid-gap: 20px;
+    margin: 10px 0;
+    .preview-photo {
       position: relative;
-      display: inline-block;
-      padding: 5px 40px 5px 10px;
-      margin: 5px;
-      border-radius: 20px;
-      background: #ccc;
       img {
-        position: absolute;
-        right: 2px;
-        top: 50%;
-        width: 25px;
-        transform: translateY(-50%);
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: var(--radius);
       }
+      .delete {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 20px;
+        border-radius: 50%;
+        transform: translate(50%, -50%);
+        background: var(--silver);
+      }
+    }
+  }
+  .checkboxes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 25px;
+  }
+  .cancel-btn {
+    text-align: center;
+    font-size: var(--small_font);
+    color: var(--silver);
+    text-transform: uppercase;
+    margin: 15px;
+    cursor: pointer;
+  }
+  @media(max-width: 430px) {
+    .checkboxes {
+      grid-template-columns: 1fr;
+      label {
+        margin-top: 5px;
+        input {
+          width: 18px;
+          height: 18px;
+          &:before {
+            width: 5px;
+            height: 9px;
+            transform: translate(-50%, -65%) rotateZ(45deg);
+          }
+        }
+        span {
+          font-size: var(--middle_font);
+        }
+      }
+    }
+  }
+  @media(max-width: 380px) {
+    .new-photos {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .checkboxes {
+      label {
+        input {
+          width: 15px;
+          height: 15px;
+          &:before {
+            width: 4px;
+            height: 7px;
+            transform: translate(-55%, -65%) rotateZ(45deg);
+          }
+        }
+        span {
+          font-size: var(--small_font);
+        }
+      }
+    }
+    .cancel-btn {
+      font-size: var(--font_em);
     }
   }
 `;

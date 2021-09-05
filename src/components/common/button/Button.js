@@ -3,7 +3,7 @@ import {Container} from "./styles";
 
 const Button = ({...props}) => {
   return(
-    <Container onClick={props.action} style={props.style}>
+    <Container onClick={props.action} style={props.style} className='gradient-button'>
         <span>{props.children}</span>
     </Container>
   )

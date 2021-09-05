@@ -1,12 +1,31 @@
 import React, {useState} from 'react';
 import {Container} from "./styles";
-import TitlePage from "../common/titlePage/TitlePage";
+import Input from "../common/input/Input";
+import Textarea from "../common/textarea/Textarea";
+import Checkbox from "../common/checkbox/Checkbox";
 import Button from "../common/button/Button";
 import close from '../../img/close.png';
 
 const SettingsParking = () => {
   const [selected_slide, setSelectedSlide] = useState(0);
   const [files, setFiles] = useState([]);
+  const [preview_files, setPreviewFiles] = useState([]);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [city, setCity] = useState('');
+  const [street, setStreet] = useState('');
+  const [house, setHouse] = useState('');
+  const [place_count, setPlaceCount] = useState('');
+  const [price, setPrice] = useState('');
+  const [video_monitoring, setVideoMonitoring] = useState(false);
+  const [covered_parking, setCoveredParking] = useState(false);
+  const [underground_parking, setUndergroundParking] = useState(false);
+  const [motorbike, setMotorbike] = useState(false);
+  const [car, setCar] = useState(false);
+  const [truck, setTruck] = useState(false);
+
   let photos = [
     {
       url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -59,6 +78,7 @@ const SettingsParking = () => {
     for(let i=0; i<input_files.length; i++) {
       arr.push(input_files[i]);
     }
+    console.log(arr);
     setFiles(arr);
   };
 
@@ -78,7 +98,6 @@ const SettingsParking = () => {
 
   return(
     <Container>
-      <TitlePage>Настройки</TitlePage>
       <div className="slider">
         <div className="slides">
           {
@@ -92,10 +111,10 @@ const SettingsParking = () => {
                    key={index}
                    onClick={() => switchSlide(index)}
               >
-                <img src={close} className="delete" onClick={index => deletePhoto(index)} alt=""/>
+                <img src={close} className="delete" onClick={() => deletePhoto(index)} alt=""/>
                 <img src={item.url} alt=""/>
                 {
-                  !item.main && <div className="btn" onClick={index => makeIsMain(index)}>Сделать главной</div>
+                  !item.main && <Button action={() => makeIsMain(index)}>Сделать главной</Button>
                 }
               </div>
             ))
@@ -110,7 +129,7 @@ const SettingsParking = () => {
         </div>
       </div>
       <label>
-        <div className='addPhoto'>Загрузить фото</div>
+        <Button>Загрузить фото</Button>
         <input type="file"
                onChange={addPhoto}
                accept='image'
@@ -118,45 +137,96 @@ const SettingsParking = () => {
                hidden
         />
       </label>
-      <div className="newPhotos">
-        {
-          files.map((item, index) => (
-            <div className="titlePhoto" key={index}>
-              <span>{item.name}</span>
-              <img src={close} onClick={() => deleteNewPhoto(index)} alt=""/>
-            </div>
-          ))
-        }
-      </div>
-      <input type="text"
+      {
+        !!files.length &&
+        <div className="new-photos">
+          {
+            files.map((item, index) => (
+              <div className="preview-photo" key={index}>
+                <img src={URL.createObjectURL(item)} alt=""/>
+                <img src={close} className='delete' onClick={() => deleteNewPhoto(index)} alt=""/>
+              </div>
+            ))
+          }
+        </div>
+      }
+      <Input type="text"
              placeholder='Название'
+             value={name}
+             onChange={e => setName(e.target.value)}
       />
-      <input type="text"
-             placeholder='Описание'
+      <Textarea rows="4"
+                placeholder='Описание'
+                value={description}
+                onChange={e => setDescription(e.target.value)}
       />
-      <input type="text"
+      <Input type="text"
              placeholder='Город'
+             value={city}
+             onChange={e => setCity(e.target.value)}
       />
-      <input type="text"
+      <Input type="text"
              placeholder='Улица'
+             value={street}
+             onChange={e => setStreet(e.target.value)}
       />
-      <input type="text"
+      <Input type="text"
              placeholder='Дом'
+             value={house}
+             onChange={e => setHouse(e.target.value)}
       />
-      <input type="text"
-             placeholder='Количество всех мест'
+      <Input type="text"
+             placeholder='Количество мест'
+             value={place_count}
+             onChange={e => setPlaceCount(e.target.value)}
       />
-      <input type="text"
-             placeholder='Стоимость (руб.)'
+      <Input type="text"
+             placeholder='Стоимость (₽/сутки)'
+             value={price}
+             onChange={e => setPrice(e.target.value)}
       />
-      <input type="text"
+      <Input type="text"
              placeholder='Телефон'
+             value={phone}
+             onChange={e => setPhone(e.target.value)}
       />
-      <input type="text"
+      <Input type="text"
              placeholder='Почта'
+             value={email}
+             onChange={e => setEmail(e.target.value)}
       />
-      <Button>Сохранить</Button>
-      <Button>Отмена</Button>
+      <div className="checkboxes">
+        <div className="left">
+          <Checkbox label='Видео-наблюдение'
+                    checked={video_monitoring}
+                    onChange={e => setVideoMonitoring(e.target.checked)}
+          />
+          <Checkbox label='Крытая парковка'
+                    checked={covered_parking}
+                    onChange={e => setCoveredParking(e.target.checked)}
+          />
+          <Checkbox label='Подземная парковка'
+                    checked={underground_parking}
+                    onChange={e => setUndergroundParking(e.target.checked)}
+          />
+        </div>
+        <div className="right">
+          <Checkbox label='Мотоцикл'
+                    checked={motorbike}
+                    onChange={e => setMotorbike(e.target.checked)}
+          />
+          <Checkbox label='Легковой автомобиль'
+                    checked={car}
+                    onChange={e => setCar(e.target.checked)}
+          />
+          <Checkbox label='Грузовой автомобиль'
+                    checked={truck}
+                    onChange={e => setTruck(e.target.checked)}
+          />
+        </div>
+      </div>
+      <Button style={{marginBottom: 0}}>Сохранить</Button>
+      <p className='cancel-btn'>Назад</p>
     </Container>
   )
 };
