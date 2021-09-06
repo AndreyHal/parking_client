@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from "axios";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import RegistrationUser from "./components/registrationUser/RegistrationUser";
 import ConfirmPhone from './components/confirmPhone/ConfirmPhone';
@@ -18,6 +19,8 @@ const Link = () => {
     </div>
   )
 };
+
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (

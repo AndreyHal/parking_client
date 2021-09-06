@@ -4,10 +4,22 @@ import Wrapper from "../common/wrapper/Wrapper";
 import TitlePage from '../common/titlePage/TitlePage';
 import Input from '../common/input/Input';
 import Button from "../common/button/Button";
+import axios from 'axios';
 
 const Login = () => {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
+
+  const login = () => {
+    let request = {
+      phone: phone,
+      password: password
+    };
+
+    axios.post('http://localhost:8001/api/auth/login', request).then(res => {
+      window.location.href = '/main';
+    });
+  };
 
   return(
     <Wrapper>
@@ -24,7 +36,7 @@ const Login = () => {
                onChange={e => setPassword(e.target.value)}
         />
         <a href="/resetPass">Забыли пароль?</a>
-        <Button action={() => window.location.href = '/main'}>Войти</Button>
+        <Button action={login}>Войти</Button>
       </Container>
     </Wrapper>
   )

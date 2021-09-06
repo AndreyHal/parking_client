@@ -7,6 +7,7 @@ import SettingsUser from "../settingsUser/SettingsUser";
 import ParkingTile from '../common/parkingTile/ParkingTile';
 import ParkingPage from "../parkingPage/ParkingPage";
 import MainTabs from "../common/mainTabs/MainTabs";
+import axios from "axios";
 
 const Main = () => {
   const [parking_list, setParkingList] = useState([]);
@@ -451,6 +452,14 @@ const Main = () => {
     setParkingList(list);
     setParkingId(null);
   }, [tab]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8001/api/auth/isAuth').then(res => {
+
+    }).catch(err => {
+      window.location.href = '/login';
+    });
+  }, []);
 
   return(
     <Wrapper wide>
