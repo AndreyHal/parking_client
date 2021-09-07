@@ -5,6 +5,8 @@ import TitlePage from "../common/titlePage/TitlePage";
 import Input from "../common/input/Input";
 import Checkbox from "../common/checkbox/Checkbox";
 import Button from "../common/button/Button";
+import axios from "axios";
+import {API_URL} from "../../config";
 
 const RegistrationParking = () => {
   const [next_page, setNextPage] = useState(false);
@@ -24,6 +26,25 @@ const RegistrationParking = () => {
   const [motorbike, setMotorbike] = useState(false);
   const [car, setCar] = useState(false);
   const [truck, setTruck] = useState(false);
+
+  const registration = () => {
+    let request = {
+      name: name,
+      phone: phone,
+      email: email,
+      city: city,
+      street: street,
+      house: house,
+      price: price,
+      count_place: place_count,
+      free_places: true,
+      password: pass
+
+    };
+    axios.post(API_URL + '/createParking', request).then(res => {
+      window.location.href = '/confirmPhone';
+    });
+  };
 
   return(
     <Wrapper>
@@ -87,7 +108,7 @@ const RegistrationParking = () => {
                   />
                 </div>
               </div>
-              <Button style={{marginBottom: 0}} action={() => window.location.href = '/reservations'}>Зарегистрироваться</Button>
+              <Button style={{marginBottom: 0}} action={registration}>Зарегистрироваться</Button>
               <p className='cancel-btn' onClick={() => setNextPage(false)}>Назад</p>
             </Fragment>
             :

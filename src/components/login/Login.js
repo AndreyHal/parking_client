@@ -5,6 +5,7 @@ import TitlePage from '../common/titlePage/TitlePage';
 import Input from '../common/input/Input';
 import Button from "../common/button/Button";
 import axios from 'axios';
+import {API_URL} from "../../config";
 
 const Login = () => {
   const [phone, setPhone] = useState('');
@@ -16,7 +17,7 @@ const Login = () => {
       password: password
     };
 
-    axios.post('http://localhost:8001/api/auth/login', request).then(res => {
+    axios.post(API_URL + '/auth/login', request).then(res => {
       window.location.href = '/main';
     });
   };

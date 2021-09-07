@@ -4,6 +4,8 @@ import Wrapper from "../common/wrapper/Wrapper";
 import TitlePage from '../common/titlePage/TitlePage';
 import Input from "../common/input/Input";
 import Button from "../common/button/Button";
+import axios from "axios";
+import {API_URL} from "../../config";
 
 const RegistrationUser = () => {
   const [name, setName] = useState('');
@@ -13,6 +15,20 @@ const RegistrationUser = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeat_pass, setRepeatPass] = useState('');
+
+  const registration = () => {
+    let request = {
+      name: name,
+      surname: surname,
+      num_of_car: num_of_car,
+      phone: phone,
+      email: email,
+      password: password
+    };
+    axios.post(API_URL + '/createUser', request).then(res => {
+      window.location.href = '/confirmPhone';
+    });
+  };
 
   return(
     <Wrapper>
@@ -53,7 +69,7 @@ const RegistrationUser = () => {
                    value={repeat_pass}
                    onChange={e => setRepeatPass(e.target.value)}
             />
-            <Button action={() => window.location.href = '/confirmPhone'}>Зарегистрироваться</Button>
+            <Button action={registration}>Зарегистрироваться</Button>
         </Container>
     </Wrapper>
   )
