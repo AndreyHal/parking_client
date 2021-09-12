@@ -20,9 +20,15 @@ const Main = () => {
     let url = '';
     if(tab === 'main') {
       url = API_URL + '/getParking';
+      axios.get(url).then(res => {
+        setParkingList(res.data);
+      });
     }
     if(tab === 'favorites') {
       url = API_URL + '/getFavorite';
+      axios.get(url).then(res => {
+        setParkingList(res.data);
+      });
     }
     if(tab === 'booked') {
       list = [
@@ -58,10 +64,11 @@ const Main = () => {
         }
       ];
       setParkingList(list);
+      // axios.get(url).then(res => {
+      //   setParkingList(res.data);
+      // });
     }
-    axios.get(url).then(res => {
-      setParkingList(res.data);
-    });
+
     setParkingId(null);
   }, [tab]);
 
@@ -78,7 +85,7 @@ const Main = () => {
       <Container>
         {
           !!parking_id ?
-            <ParkingPage id={parking_id}/>
+            <ParkingPage {...parking_list.find(item => item.id === parking_id)}/>
             :
             <Fragment>
               {

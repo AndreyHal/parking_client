@@ -5,8 +5,10 @@ import Checkbox from "../common/checkbox/Checkbox";
 import Button from "../common/button/Button";
 import { YMaps, Map, ZoomControl, GeolocationControl, Placemark } from 'react-yandex-maps';
 import marker_icon from '../../img/marker_icon.png';
+import {API_URL} from "../../config";
+import axios from "axios";
 
-const ParkingPage = ({id}) => {
+const ParkingPage = ({...props}) => {
   const [selected_slide, setSelectedSlide] = useState(0);
   const [show_popup, setShowPopup] = useState(false);
   const [show_period, setShowPeriod] = useState(false);
@@ -14,6 +16,7 @@ const ParkingPage = ({id}) => {
   const [end_date, setEndDate] = useState('');
   const [code, setCode] = useState('');
   const [center, setCenter] = useState(null);
+  const [ymaps, setYmaps] = useState(null);
   const photos = [
     {
       url: 'https://st2.depositphotos.com/3336339/8196/i/600/depositphotos_81969890-stock-photo-red-chaotic-cubes-wall-background.jpg',
@@ -60,10 +63,6 @@ const ParkingPage = ({id}) => {
     setSelectedSlide(selected_slide - 1);
   };
 
-  // useEffect(() => {
-  //   document.body.style.overflow = show_popup ? 'hidden' : '';
-  // }, [show_popup]);
-
   const booking = () => {
     setCode('G3E4BH');
   }
@@ -82,8 +81,8 @@ const ParkingPage = ({id}) => {
       {/*  show_popup && <Popup close={() => setShowPopup(false)}/>*/}
       {/*}*/}
       <div className="header">
-        <h2>Парковка 1</h2>
-        <p>80₽/сутки</p>
+        <h2>{props.name}</h2>
+        <p>{props.price}₽/сутки</p>
       </div>
       <div className="slider">
         <div className="slides">
@@ -111,13 +110,10 @@ const ParkingPage = ({id}) => {
           }
         </div>
       </div>
-      <div className="desc">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cupiditate
-        nesciunt, nostrum nulla praesentium quaerat quam ratione! Est maxime, quisquam!
-      </div>
+      <div className="desc">{props.description}</div>
       <div className="address">
-        <p>г. Челябинск, ул. Коммуны, д. 125</p>
-        <p className="place">Места есть</p>
+        <p>г. {props.city}, ул. {props.street}, д. {props.house}</p>
+        <p className="place">{props.free_places ? 'Места есть' : 'Мест нет'}</p>
       </div>
       <div className="map">
         <YMaps>
@@ -135,24 +131,24 @@ const ParkingPage = ({id}) => {
       </div>
       <div className="checkboxes">
         <div className="left">
-          <Checkbox checked={true}
+          <Checkbox checked={props.video_monitoring}
                     label='Видео-наблюдение'
           />
-          <Checkbox checked={false}
+          <Checkbox checked={props.covered_parking}
                     label='Крытая парковка'
           />
-          <Checkbox checked={false}
+          <Checkbox checked={props.underground_parking}
                     label='Подземная парковка'
           />
         </div>
         <div className="right">
-          <Checkbox checked={true}
+          <Checkbox checked={props.motorbike}
                     label='Мотоцикл'
           />
-          <Checkbox checked={true}
+          <Checkbox checked={props.car}
                     label='Легковой автомобиль'
           />
-          <Checkbox checked={false}
+          <Checkbox checked={props.truck}
                     label='Грузовой автомобиль'
           />
         </div>

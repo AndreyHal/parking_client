@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Container} from "./styles";
 import Input from "../common/input/Input";
 import Textarea from "../common/textarea/Textarea";
 import Checkbox from "../common/checkbox/Checkbox";
 import Button from "../common/button/Button";
 import close from '../../img/close.png';
+import {API_URL} from "../../config";
+import axios from "axios";
 
 const SettingsParking = () => {
   const [selected_slide, setSelectedSlide] = useState(0);
@@ -95,6 +97,68 @@ const SettingsParking = () => {
   const makeIsMain = (index) => {
     photos.map((item, indexImg) => item.main = index === indexImg);
   };
+
+  const save = () => {
+    let request = {
+      name,
+      phone,
+      email,
+      city,
+      street,
+      house,
+      count_place: place_count,
+      price,
+      free_places: true,
+      description,
+      video_monitoring,
+      covered_parking,
+      underground_parking,
+      motorbike,
+      car,
+      truck
+    };
+
+    axios.post(API_URL + '/updateParkingSettings', request).then(res => {
+      console.log('OK');
+    });
+  };
+
+  useEffect(() => {
+    axios.get(API_URL + '/getParkingSettings').then(res => {
+      let {id,
+           name,
+           phone,
+           email,
+           city,
+           street,
+           house,
+           count_place,
+           price,
+           free_places,
+           description,
+           video_monitoring,
+           covered_parking,
+           underground_parking,
+           motorbike,
+           car,
+           truck} = res.data;
+      setName(name);
+      setDescription(description);
+      setPhone(phone);
+      setEmail(email);
+      setCity(city);
+      setStreet(street);
+      setHouse(house);
+      setPlaceCount(count_place);
+      setPrice(price);
+      setVideoMonitoring(video_monitoring);
+      setCoveredParking(covered_parking);
+      setUndergroundParking(underground_parking);
+      setMotorbike(motorbike);
+      setCar(car);
+      setTruck(truck);
+    });
+  }, []);
 
   return(
     <Container>
@@ -225,7 +289,7 @@ const SettingsParking = () => {
           />
         </div>
       </div>
-      <Button style={{marginBottom: 0}}>Сохранить</Button>
+      <Button style={{marginBottom: 0}} action={save}>Сохранить</Button>
       <p className='cancel-btn'>Назад</p>
     </Container>
   )

@@ -18,7 +18,11 @@ const Login = () => {
     };
 
     axios.post(API_URL + '/auth/login', request).then(res => {
-      window.location.href = '/main';
+      if(res.data.role === 'person') {
+        window.location.href = '/main';
+      } else if(res.data.role === 'parking') {
+        window.location.href = '/mainParking';
+      }
     });
   };
 

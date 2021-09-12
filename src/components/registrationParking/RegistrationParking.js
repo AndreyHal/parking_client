@@ -38,8 +38,13 @@ const RegistrationParking = () => {
       price: price,
       count_place: place_count,
       free_places: true,
-      password: pass
-
+      password: pass,
+      video_monitoring: video_monitoring,
+      covered_parking: covered_parking,
+      underground_parking: underground_parking,
+      motorbike: motorbike,
+      car: car,
+      truck: truck
     };
     axios.post(API_URL + '/createParking', request).then(res => {
       window.location.href = '/confirmPhone';
